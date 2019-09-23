@@ -15,6 +15,7 @@ local wifi_connect = function (ssid, interval, on_complete)
   local wifi_timer = tmr.create();
   
   wifi_timer:register(interval or 1500, tmr.ALARM_AUTO, function()
+    print('connecting to: '..ssid);
     if wifi.sta.getip() then
       on_complete(wifi.sta.getip());
       wifi_timer:stop();
