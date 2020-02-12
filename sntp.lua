@@ -8,10 +8,10 @@ local sync_time = function (addresses, on_success, retries)
     print('Failed to sync time...');
 
     if (sync_retries > max_retries_count) then
-      return sync_time(addresses, on_success, sync_retries + 1);
+      error('Max retries count ('..max_retries_count..') reached. Unable to sync time');
     end
-
-    print('Max retries count ('..max_retries_count..') reached. Unable to sync time');
+    
+    return sync_time(addresses, on_success, sync_retries + 1);
   end);
 end
 
